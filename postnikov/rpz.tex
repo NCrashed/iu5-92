@@ -218,8 +218,7 @@
 фирмы;
 \item Описать настройку рабочих параметров СУБД, которая установлена в ЛВС фирмы;
 \item Провести распределение предметных баз данных по узлам сети;
-\item Выполнить аналитическое и имитационное моделирование ЛВС фирмы и провести сравни-
-тельный анализ результатов моделирования;
+\item Выполнить аналитическое и имитационное моделирование ЛВС фирмы и провести сравнительный анализ результатов моделирования;
 \item Разработать и представить рекомендации по модернизации и реорганизации распределенной
 АСОИиУ фирмы.
 \end{enumerate}
@@ -1377,14 +1376,443 @@ $$
 Коэффициент загрузки пользователя                   & 0.36   & 0.36   & 0.41   & 0.44   & 0.22   \\
 \end{longtable}
 
+\subsubsection{Исходный код программы для аналитического моделирования}
+
+Использовался язык программирования D:
+\begin{lstlisting}[language=D]
+import vibe.data.json;
+
+import std.array;
+import std.getopt;
+import std.file;
+import std.stdio;
+import std.math;
+
+struct Input
+{
+    size_t wokrstationsCount;
+    size_t serversCount;
+    double afterProcessTime;
+    double queringProcessTime;
+    double responseProcessTime;
+    double sendingProcessTime;
+    
+    static void genExample(string filename)
+    {
+        auto example = Input(8, 2, 80, 80, 10, 10).serializeToJson;
+        auto builder = appender!string;
+        
+        writePrettyJsonString(builder, example);
+        
+        auto file = File(filename, "w");
+        scope(exit) file.close();
+        file.write(builder.data);
+    }
+}
+
+struct Output
+{
+    double systemResponseTime;
+    double workstationLoad;
+    double cableLoad;
+    double serverLoad;
+    double userLoad;
+    
+    void save(string filename)
+    {
+        auto builder = appender!string;
+        writePrettyJsonString(builder, this.serializeToJson);
+        
+        auto file = File(filename, "w");
+        scope(exit) file.close();
+        file.write(builder.data);
+    }
+    
+    void toString(scope void delegate(const(char)[]) sink) const
+    {
+        writePrettyJsonString(sink, this.serializeToJson);
+    }
+}
+
+void main(string[] args)
+{
+    string exampleInputName = "";
+    bool needHelp = false;
+    string inputFileName = "";
+    string outputFileName = "output.json";
+    
+    getopt(args,
+        "example", &exampleInputName,
+        "input", &inputFileName,
+        "output", &outputFileName,
+        "help|h", &needHelp
+    );
+    
+    if(needHelp)
+    {
+        writeln(helpMsg);
+        return;
+    }
+    
+    if(exampleInputName != "")
+    {
+        Input.genExample(exampleInputName);
+        return;
+    }
+    
+    if(inputFileName == "")
+    {
+        writeln("Input file isn't specified!");
+        writeln(helpMsg);
+        return;
+    }
+    
+    immutable input = deserializeJson!Input(readText(inputFileName));
+    writeln("Readed input: ", input);
+    input.solve.save(outputFileName);
+}
+
+T min(T)(T a, T b)
+{
+    return a <= b ? a : b;
+}
+
+Output solve(const Input input)
+{
+    
+    enum K1 = 0.995;
+    enum K2 = 100;
+    enum delta = 0.0001;
+    
+    immutable Pi = 1 / cast(double)input.serversCount;
+    double background = K1 * min( 1 / (2*input.sendingProcessTime), 1 / (Pi*input.responseProcessTime) ) * ((input.wokrstationsCount - 1)/cast(double)input.wokrstationsCount); 
+    writeln("Initial background", background);
+    
+    Output finalCalc(double Tk, double Ts)
+    {
+        Output output;
+        output.systemResponseTime = input.afterProcessTime + input.queringProcessTime + Tk + Ts;
+        immutable lambda = input.wokrstationsCount / output.systemResponseTime;
+        
+        output.workstationLoad = (input.afterProcessTime + input.queringProcessTime) / output.systemResponseTime;
+        output.userLoad = input.queringProcessTime / output.systemResponseTime;
+        output.cableLoad = 2 * lambda * input.sendingProcessTime;
+        output.serverLoad = lambda * Pi * input.responseProcessTime;
+        
+        writeln("Output calculated: ", output);
+        return output;
+    }
+    
+    enum maxIterations = 10000;
+    size_t lastIteration = 0;
+    double lastTk, lastTs, lastDiff;
+    foreach(i; 0..maxIterations)
+    {
+        writeln("Iteration ", i);
+        
+        immutable Tk = (2*input.sendingProcessTime)/(1 - 2*background*input.responseProcessTime); lastTk = Tk;
+        immutable Ts = input.responseProcessTime / (1 - Pi*background*input.responseProcessTime); lastTs = Ts;
+        immutable backgroundTest = (input.wokrstationsCount - 1) / (input.afterProcessTime + input.queringProcessTime + Tk + Ts); 
+        immutable diff = abs(background - backgroundTest) / background; lastDiff = diff;
+        
+        writeln("Tk = ", Tk);
+        writeln("Ts = ", Ts);
+        writeln("New background = ", backgroundTest);
+        writeln("diff = ", diff);
+        
+        if(diff < delta)
+        {
+            writeln("Diff is sufficient");
+            return finalCalc(Tk, Ts);
+        }
+        
+        writeln("Diff isn't sufficient");
+        background = background - (background - backgroundTest) / cast(double)K2;
+        writeln("Setting background to ", background);
+        lastIteration = i;
+    }
+    
+    writeln("Stopping at iteration ", lastIteration, " with diff = ", lastDiff);
+    return finalCalc(lastTk, lastTs);
+}
+
+immutable helpMsg = 
+`Tool for analytic modeling for coursework IU5-92 Gushcha Anton 2014.
+   
+Arguments:
+    --example=name - generate example input file at name
+    --input=name - load input data from name
+    --output=name - save result to name, default is 'output.json'
+    --help or -h - show this message
+`;
+\end{lstlisting}
+
 \subsection{Имитационное моделирование}
+
+Иммитационное моделирование рассматриваемой РСОД было проведено с помощью языка D. 
+
+Результаты имитационного моделирования представлены в таблице~\ref{tab:sim-result}.
+
+\begin{longtable}{p{10cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}}
+\caption{Результаты имитационного моделирования}
+\label{tab:sim-result} \\
+\hline
+\multicolumn{6}{c}{Проведенные эксперименты} \\ \hline
+                                                    & 1      & 2      & 3      & 4      & 5       \\ \cline{2-6}
+Количество рабочих станций                          & 8      & 8      & 8      & 8      & 8      \\
+Среднее время дообработки запроса на PC             & 80     & 160    & 240    & 160    & 80     \\
+Среднее время формирования запроса на PC            & 80     & 160    & 240    & 160    & 80     \\
+Количество серверов                                 & 2      & 2      & 2      & 2      & 2      \\
+Среднее время обработки запроса на сервере          & 10     & 20     & 20     & 10     & 20     \\
+Среднее время передачи запроса по каналу            & 10     & 20     & 20     & 10     & 20     \\  
+\hline
+\multicolumn{6}{c}{Результаты моделирования} \\ 
+\hline
+Среднее время реакции системы                       & 220    & 459    & 574    & 373    & 346    \\
+Коэффициент загрузки рабочей станции                & 0.78   & 0.70   & 0.84   & 0.89   & 0.46   \\
+Коэффициент загрузки канала передачи данных         & 0.67   & 0.76   & 0.56   & 0.40   & 0.97   \\
+Коэффициент загрузки сервера                        & 0.16   & 0.17   & 0.14   & 0.11   & 0.21   \\
+Коэффициент загрузки пользователя                   & 0.42   & 0.37   & 0.40   & 0.50   & 0.25   \\
+\end{longtable}
+
+\subsubsection{Исходный код програмы для иммитационного моделирования}
+Использовался язык программирования D:
+\begin{lstlisting}[language=D]
+module sim;
+
+import std.algorithm;
+import std.datetime;
+import std.concurrency;
+import std.container.dlist;
+import std.typecons;
+import std.random;
+import core.thread;
+
+import data;
+import util;
+
+struct Query
+{
+    size_t workstation;
+    size_t server;
+    
+    TickDuration startStamp;
+}
+
+struct Response
+{
+    size_t workstation;
+    
+    TickDuration startStamp;
+}
+
+void workstationProcess(Duration To, Duration Tp, size_t workstationId, size_t serversCount)
+{
+    Thread.getThis.isDaemon = true;
+    Tid cableProcessTid = receiveOnly!Tid;
+    
+    Duration totalLifetime = 0.dur!"msecs";
+    size_t totalResponses = 0;
+    auto startStamp = Clock.currAppTick;
+    Duration loadTime = 0.dur!"msecs";
+    Duration userLoadTime = 0.dur!"msecs";
+    
+    void postResponse(Response r)
+    {
+        loadTime += waitExp(To);
+        totalLifetime += Clock.currAppTick - r.startStamp;
+        totalResponses += 1; 
+    }
+    
+    void genQuery()
+    {
+       auto query = Query(workstationId, uniform(0, serversCount), Clock.currAppTick);
+       auto t = waitExp(Tp.exp);
+       loadTime += t;
+       userLoadTime += t;
+       cableProcessTid.send(query);
+    }
+    
+    genQuery();
+    
+    
+    while(true) {
+        receive(
+            (Response r) {
+                postResponse(r);
+                genQuery();
+            },
+            (Tid asker) {
+                double reactionTime = totalLifetime.total!"msecs" / cast(double)totalResponses;
+                auto totalTime = cast(double)(cast(Duration)(Clock.currAppTick - startStamp)).total!"msecs";
+                double loadFactor = loadTime.total!"msecs" / totalTime;
+                double userLoadFactor = userLoadTime.total!"msecs" / totalTime;
+                asker.send(reactionTime, loadFactor, userLoadFactor);
+            }
+        );
+    }
+}
+
+void cableProcess(Duration tk, const Tid[] workstations, const Tid[] servers)
+{
+    Thread.getThis.isDaemon = true;
+    auto startStamp = Clock.currAppTick;
+    Duration loadTime = 0.dur!"msecs";
+    
+    while(true) {
+        receive(
+            (Response r) {
+                loadTime += waitExp(tk);
+                (cast()workstations[r.workstation]).send(r);
+            },
+            (Query q) {
+                loadTime += waitExp(tk);
+                (cast()servers[q.server]).send(q);
+            },
+            (Tid asker) {
+                auto totalTime = cast(double)(cast(Duration)(Clock.currAppTick - startStamp)).total!"msecs";
+                asker.send(loadTime.total!"msecs" / totalTime);
+            }
+        );
+    }
+}
+
+void serverProcess(Duration ts)
+{
+    Thread.getThis.isDaemon = true;
+    Tid cableProcessId = receiveOnly!Tid;
+    TickDuration startStamp = Clock.currAppTick;
+    Duration loadTime = 0.dur!"msecs";
+    
+    while(true) {
+        receive(
+            (Query q) {
+                loadTime += waitExp(ts);
+                cableProcessId.send(Response(q.workstation, q.startStamp));
+            },
+            (Tid asker) {
+                auto totalTime = cast(double)(cast(Duration)(Clock.currAppTick - startStamp)).total!"msecs";
+                asker.send(loadTime.total!"msecs" / totalTime);
+            }
+        );
+    }
+}
+    
+Duration mapTime(double v)
+{
+    return dur!"msecs"(cast(long)v);
+}
+
+Output startSimulation(Input input, Duration maxSimTime)
+{
+    Tid[] workstations;
+    foreach(i; 0..input.wokrstationsCount)
+    {
+        workstations ~= spawn(&workstationProcess, input.afterProcessTime.mapTime, input.queringProcessTime.mapTime, i, input.serversCount);
+    }
+    
+    Tid[] servers;
+    foreach(i; 0..input.serversCount)
+    {
+        servers ~= spawn(&serverProcess, input.responseProcessTime.mapTime);
+    }
+    
+    Tid cableProcessId = spawn(&cableProcess, input.sendingProcessTime.mapTime, cast(immutable)workstations, cast(immutable)servers);
+    
+    foreach(w; workstations) w.send(cableProcessId);
+    foreach(s; servers) s.send(cableProcessId);
+    
+    Thread.sleep(maxSimTime);
+    std.stdio.writeln("Simulation ended!");
+    
+    Tuple!(double, double, double)[] times;
+    foreach(w; workstations)
+    {
+        w.send(thisTid);
+        times ~= receiveOnly!(double, double, double);
+    }
+    auto wStat = times.mean;
+    
+    cableProcessId.send(thisTid);
+    auto cableLoadFactor = receiveOnly!double();
+    
+    double[] serverTimes;
+    foreach(s; servers)
+    {
+        s.send(thisTid);
+        serverTimes ~= receiveOnly!double;
+    }
+    auto serverLoadFactor = serverTimes.mean;
+    
+    Output output;
+    output.systemResponseTime = wStat[0];
+    output.workstationLoad = wStat[1];
+    output.userLoad = wStat[2];
+    output.cableLoad = cableLoadFactor;
+    output.serverLoad = serverLoadFactor;
+    
+    return output;
+}
+\end{lstlisting}
+
 \subsection{Сравнительный анализ результатов моделирования}
+
+Сравнение результатов аналитического и имитационного моделирования приведено ниже в таблице~\ref{tab:model-cmp}.
+
+\begin{longtable}{p{0.5cm}|p{4cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}}
+\caption{Сравнение результатов аналитического и имитационного моделирования}
+\label{tab:model-cmp} \\
+ №                 & Модель           & Цикл & Рабст & Канал & Сервeр & Польз \\
+\hline
+\multirow{2}{*}{1} & Аналитическая    & 225  & 0.71  & 0.71  & 0.18 & 0.36  \\
+                   & Иммитационная    & 220  & 0.78  & 0.67  & 0.16 & 0.42  \\
+\hline
+\multirow{2}{*}{2} & Аналитическая    & 450  & 0.71  & 0.71  & 0.18 & 0.36  \\
+                   & Иммитационная    & 459  & 0.70  & 0.76  & 0.17 & 0.37  \\
+\hline
+\multirow{2}{*}{3} & Аналитическая    & 580  & 0.83  & 0.55  & 0.14 & 0.41  \\
+                   & Иммитационная    & 574  & 0.84  & 0.56  & 0.14 & 0.40  \\
+\hline
+\multirow{2}{*}{4} & Аналитическая    & 364  & 0.88  & 0.44  & 0.11 & 0.44  \\
+                   & Иммитационная    & 373  & 0.89  & 0.40  & 0.11 & 0.50  \\
+\hline
+\multirow{2}{*}{5} & Аналитическая    & 362  & 0.44  & 0.88  & 0.22 & 0.22  \\
+                   & Иммитационная    & 346  & 0.46  & 0.97  & 0.21 & 0.25  \\
+\end{longtable}
+
+Сравнительный анализ приведенных результатов разных моделей показывает разницу в значения не больше 10\%, что является хорошим результатом для приближенных моделей. 
+
+Разница в различиях может быть объяснена следующим:
+\begin{itemize}[label=-]
+\item При расчете аналитической модели использовался приближенный итерационных алгоритм;
+\item При иммитационном моделировании задавалось конечное время моделирования. Использовалась приближенная функция экспоненциального распределения времени обслуживания. Также дополнительную погрешность добавляет системное окружение и системный планировщик потоков.
+\end{itemize}
+
 
 \clearpage
 \section{Выводы}
 
+В данной работе было разработан проект на построение распределенной АСОИиУ фирмы с дополнительными филиалами и получены следующие результаты:
+\begin{itemize}[label=-]
+\item выбрана структура сетей для центрального офиса и филиалов в соответствии с заданными параметрами;
+\item простроена структурные схемы ЛВС главного офиса и удаленных филиалов;
+\item описаны правила простроения сетей фирмы;
+\item для удаленной связи между офисом и фиалами выбрана технология VPN через сеть Internet, как наиболее подходящяя для поставленных целей;
+\item произведено сравнение оборудования разных производителей и выбран оптимальный вариант;
+\item приведены методы повышения производительности и отказоустойчивости серверов;
+\item описана оптимизация рабочих параметров ОС Windows Server 2003;
+\item описана оптимизация рабочих параметров СУБД SQL Server;
+\item выполнено распределение предметных баз по узлам сети;
+\item произведено аналитическое и имитационное моделирование функционирования ЛВС с последующим сравнением полученных результатов.
+\end{itemize}
+
 \clearpage
 \section{Литература}
-
+\begin{enumerate}[label=\arabic*)]
+\item Методические указания к куросовой работе по дисциплине <<Эксплуатация АСОИиУ>>;
+\item Постников В.М., Лекции по курсу <<Эксплуатация АСОИиУ>>, 2014;
+\item Галкин В.А., Григорьев Ю.А., Телекоммуникация и сети;
+\item Черненький В.М., Лекции по курсу <<Иммитационное моделирование>>, 2013.
+\end{enumerate}
 
 \end{document}
