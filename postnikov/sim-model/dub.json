@@ -1,0 +1,8 @@
+{
+	"name" : "postnik-sim",
+	"description" : "A minimal D bundle.",
+	"versions": ["VibeCustomMain"],
+	"dependencies" : {
+		"vibe-d": "0.7.21-rc.3"
+	}
+}
