@@ -1,0 +1,8 @@
+{
+	"sendingProcessTime": 20,
+	"serversCount": 2,
+	"wokrstationsCount": 8,
+	"queringProcessTime": 80,
+	"responseProcessTime": 20,
+	"afterProcessTime": 80
+}
