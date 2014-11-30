@@ -16,6 +16,7 @@
 \usepackage{tabularx}
 \usepackage{tabularx,ragged2e}
 \usepackage{pdfpages}
+\usepackage{pdflscape}
 \renewcommand\tabularxcolumn[1]{>{\Centering}p{#1}}
 \newcommand\abs[1]{\left|#1\right|}
 
@@ -38,121 +39,6 @@
     extendedchars=\true,
     basicstyle=\small,
     inputencoding=utf8
-}
-\lstdefinelanguage{D}{
-    keywords = {
-    abstract,
-    alias,
-    align,
-    asm,
-    assert,
-    auto,
-    body,
-    bool,
-    break,
-    byte,
-    case,
-    cast,
-    catch,
-    cdouble,
-    cent,
-    cfloat,
-    char,
-    class,
-    const,
-    continue,
-    creal,
-    dchar,
-    debug,
-    default,
-    delegate,
-    delete,
-    deprecated,
-    do,
-    double,
-    else,
-    enum,
-    export,
-    extern,
-    false,
-    final,
-    finally,
-    float,
-    for,
-    foreach,
-    foreach_reverse,
-    function,
-    goto,
-    idouble,
-    if,
-    ifloat,
-    immutable,
-    import,
-    in,
-    inout,
-    int,
-    interface,
-    invariant,
-    ireal,
-    is,
-    lazy,
-    long,
-    macro,
-    mixin,
-    module,
-    new,
-    nothrow,
-    null,
-    out,
-    override,
-    package,
-    pragma,
-    private,
-    protected,
-    public,
-    pure,
-    real,
-    ref,
-    return,
-    scope,
-    shared,
-    short,
-    static,
-    struct,
-    super,
-    switch,
-    synchronized,
-    template,
-    this,
-    throw,
-    true, 
-    try,
-    typedef,
-    typeid,
-    typeof,
-    ubyte,
-    ucent,
-    uint,
-    ulong,
-    union,
-    unittest,
-    ushort,
-    version,
-    void,
-    volatile,
-    wchar,
-    while,
-    with,
-    __FILE__,
-    __MODULE__,
-    __LINE__,
-    __FUNCTION__,
-    __PRETTY_FUNCTION__,
-    __gshared,
-    __traits,
-    __vector,
-    __parameters,
-    }
 }
 
 \begin{document}
@@ -1117,9 +1003,11 @@ sp_configure 'имя_параметра', значение
 \hline
 У4     &     &     & 0.9 &     &     &     & 0.9 &     & 0.5 & 0.8 \\
 \hline
-У5     &     &     & 1.3 &     &     & 1.6 & 1.1 &     &     &     \\
+У5     &     &     &     &     &     &     &     &     &     &     \\
 \hline
 У6     &     &     &     &     &     & 1.6 &     &     & 0.6 & 0.7 \\
+\hline
+У7     &     &     &0.95 &     &     & 1.4 &     &     &     & 0.9 \\
 \end{longtable}
 
 Коэффициенты в таблице~\ref{tab:bd-2} используются для получения количества обращений к базе данных в исходном варианте задания по формуле:
@@ -1136,6 +1024,7 @@ $$
 
 На основании данных из таблицы~\ref{tab:bd-1} и таблицы~\ref{tab:bd-2} для исходного варианта была сформирована сводная таблица исходных данных – таблица~\ref{tab:bd-3}. Каждое значение этой таблицы есть среднее количество обращений к базе данных ($\text{БД}_i$) определенного процесса ($\text{П}_j$) из определенного узла сети ($\text{У}_k$).
 
+\clearpage
 \begin{longtable}{p{0.6cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}}
 \caption{Результаты затрат на обработку конкретной БД конкретными процессами в конкретных
 устройствах без учёта репликации}
@@ -1159,36 +1048,36 @@ $$
                    &  П7         & 0.9   & 45  &      &      & 63   &      &      &      &      & 36   & 135   \\
                    &  П9         & 0.5   &     & 175  & 150  &      &      & 50   &      & 200  &      &       \\
                    &  П10        & 0.8   &     &      & 192  &      & 72   &      &      &      & 32   &       \\
-\hline
-\multirow{3}{*}{У5}&  П3         & 1.3   & 39  &      & 390  &      & 104  &      & 520  &      & 26   & 234   \\
-                   &  П6         & 1.6   &     &      &      &      &      &      & 320  & 480  &      & 176   \\
-                   &  П7         & 1.1   & 55  &      &      & 77   &      &      &      &      & 44   & 165   \\
+%\hline
+%\multirow{3}{*}{У5}&  П3         & 1.3   & 39  &      & 390  &      & 104  &      & 520  &      & 26   & 234   %\\
+%                   &  П6         & 1.6   &     &      &      &      &      &      & 320  & 480  &      & 176   %\\
+%                   &  П7         & 1.1   & 55  &      &      & 77   &      &      &      &      & 44   & 165   %\\
 \hline
 \multirow{3}{*}{У6}&  П6         & 1.6   &     &      &      &      &      &      & 320  & 480  &      & 176   \\
                    &  П9         & 0.6   &     & 210  & 180  &      &      & 60   &      & 240  &      &       \\
                    &  П10        & 0.7   &     &      & 168  &      & 63   &      &      &      & 28   &       \\
+\hline
+\multirow{3}{*}{У7}&  П3         & 0.95  & 29  &      & 285  &      & 76   &      & 380  &      & 19   &  181  \\
+                   &  П6         & 1.4   &     &      &      &      &      &      & 280  & 420  &      &  154  \\
+                   &  П10        & 0.9   &     &      & 216  &      & 81   &      &      &      & 36   &       \\
 \end{longtable}
 
 Составляем таблицу~\ref{tab:bd-4}, в которой указываем все возможные варианты размещения баз данных по узлам сети. В каждую клетку этой таблицы записываем число, которое определяет суммарное количество всех запросов от всех процессов всех узлов к данной БД, при условии, что эта БД находится в данном узле.
 
+\clearpage
 \begin{longtable}{p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}}
 \caption{Таблица, показывающая распределение обрабатывающих процессов по узлам}
 \label{tab:bd-4} \\
-       &  БД1 &  БД2 &  БД3 &  БД4 &  БД5 &  БД6 &  БД7 &  БД8 &  БД9 &  БД10 \\
+  &  БД1 & БД2 &  БД3 & БД4 & БД5 & БД6 &  БД7 &  БД8 & БД9 &  БД10 \\
 \hline
-У1     & 304  & 577  & 2226 & 290  & 543  & 165  & 2062 & 1830 & 357  & 1636  \\
+У1 & 239 & 577 & 2337 & 213 & 596 & 165 & 1900 & 1770 & 342 & 1396   \\ \hline
+У2 & 261 & 892 & 2799 & 185 & 623 & 255 & 2320 & 1920 & 316 & 1511   \\ \hline
+У3 & 223 & 700 & 2379 & 175 & 561 & 200 & 2040 & 1910 & 299 & 1377   \\ \hline
+У4 & 239 & 717 & 2415 & 192 & 564 & 205 & 2100 & 1930 & 308 & 1441   \\ \hline
+У6 & 311 & 892 & 3027 & 255 & 708 & 255 & 2460 & 2130 & 394 & 1738   \\ \hline
+У7 & 311 & 682 & 2679 & 255 & 645 & 195 & 2140 & 1410 & 366 & 1562   \\ \hline
 \hline
-У2     & 326  & 892  & 2688 & 262  & 570  & 255  & 2482 & 1980 & 331  & 1751  \\
-\hline
-У3     & 288  & 700  & 2268 & 252  & 508  & 200  & 2202 & 1970 & 314  & 1617  \\
-\hline
-У4     & 304  & 717  & 2304 & 269  & 511  & 205  & 2262 & 1990 & 323  & 1681  \\
-\hline
-У5     & 282  & 892  & 2526 & 255  & 551  & 255  & 1800 & 1710 & 339  & 1403  \\
-\hline
-У6     & 376  & 682  & 2568 & 332  & 592  & 195  & 2302 & 1470 & 381  & 1802  \\
-\hline\hline
-max    & 376  & 892  & 2688 & 332  & 592  & 255  & 2482 & 1990 & 381  & 1802  \\
+min& 223 & 577 & 2337 & 175 & 561 & 165 & 1900 & 1410 & 299 & 1377  \\
 \end{longtable}
 
 Используем правило: "Базу данных помещаем в тот узел, где она максимально используется, то есть суммарное количество обращений к ней со стороны других узлов минимально". Поэтому в каждом столбце, соответствующем одной конкретной БД, отыскиваем наименьшее значение. Это и будет соответствовать оптимальному варианту размещения этой БД, поскольку чем меньше это значение, тем меньше суммарное количество обращений от всех процессов всех других узлов к данной БД.
@@ -1200,13 +1089,13 @@ max    & 376  & 892  & 2688 & 332  & 592  & 255  & 2482 & 1990 & 381  & 1802  \\
 \label{tab:bd-5} \\
 Вари-ант&  БД1 &  БД2 &  БД3 &  БД4 &  БД5 &  БД6 &  БД7 &  БД8 &  БД9 &  БД10 \\
 \hline
-1       & У5   & У1   & У1   & У3   & У3   & У1   & У5   & У6   & У3   & У5    \\
+1       & У3   & У1   & У1   & У3   & У3   & У1   & У1   & У7   & У3   & У3    \\
 \hline\hline
 $N_\text{обр}$    
-       & 282   & 577  & 2226 & 252  & 508  & 165  & 1800 & 1470 & 314  & 1403  \\
+        & 223  & 577  & 2337 & 175  & 561  & 165  & 1900 & 1410 & 299  & 1377  \\
 \end{longtable}
 
-Итого получили единственное оптимальное распределение БД по узлам сети, суммарные затраты составляют 8997.
+Итого получили единственное оптимальное распределение БД по узлам сети, суммарные затраты составляют 9024.
 
 \clearpage
 \section{Моделирование сети}
@@ -1227,10 +1116,10 @@ $N_\text{обр}$
 \item $OA_{\text{ф}_i}$ - обслуживающий аппарат, имитирующий формирование запроса от $i$-ой рабочей станции к серверу;
 \item $\text{Б}_\text{к}$ - буфер, имитирующий очередь запросов к каналу;
 \item $OA_\text{к}$ - обслуживающий аппарат, имитирующий задержку при передаче данных в канале;
-\item $\text{Б}_\text{п}$ - буфер, имитирующий очередь запросов к процессорам;
-\item $OA_\text{п}$ - обслуживающий аппарат, имитирующий работу $i$-ого процессора;
-\item $\text{Б}_{\text{д}_i}$ - буфер, имитирующий очередь к $i$-ому диску;
-\item $OA_{\text{д}_i}$ - обслуживающий аппарат, имитирующий работу $i$-ого диска;
+\item $\text{Б}_\text{пs}$ - буфер, имитирующий очередь запросов к процессорам $s$-ого сервера;
+\item $OA_\text{пsi}$ - обслуживающий аппарат, имитирующий работу $i$-ого процессора $s$-ого сервера;
+\item $\text{Б}_{\text{д}_si}$ - буфер, имитирующий очередь к $i$-ому диску $s$-ого сервера;
+\item $OA_{\text{д}_si}$ - обслуживающий аппарат, имитирующий работу $i$-ого диска $s$-ого сервера;
 \item $P$ - вероятность обращения запроса к ЦП после обработки на диске. Обслуживание заявок во всех ОА подчиняется экспоненциальному закону.
 \end{itemize}
 
@@ -1261,9 +1150,14 @@ $N_\text{обр}$
 $T_o$ & Среднее время дообработки на рабочей станции сети запроса от этой станции к серверу \\
 $T_p$ & Среднее время формирования запроса от рабочей станции сети к серверу \\
 $t_k$ & Среднее значение времени передачи запроса по каналу \\
-$m$   & Число серверов \\
+$s$   & Число серверов \\
 $n$   & Число рабочих станций в сети \\
-$t_s$ & Среднее время обработки запроса в сервере
+$c$	  & Число процессоров сервера \\
+$m$   & Число дисков в сервере \\
+$t_\text{пр}$ & Cреднее значение времени обработки запроса в ЦП сервера \\
+$t_\text{д}$ & Среднее значение времени добработки запроса в диске сервера \\
+$P$ & Вероятность повтора обработки запроса после добработки в диске сервера \\
+%$t_s$ & Среднее время обработки запроса в сервере
 \end{longtable}
 
 \clearpage
@@ -1277,35 +1171,45 @@ $T_\text{реак}$ & Среднее время реакции системы \\
 $\rho_{pc}$ & коэффициент загрузки ОА, имитирующего работу рабочей станции сети \\
 $\rho_k$ & коэффициент загрузки ОА, имитирующего работу канала передачи данных \\
 $\rho_{\text{с}_i}$ & коэффициент загрузки ОА, имитирующего работу $i$-ого сервера \\
+$\rho_{\text{д}_i}$ & коэффициент загрузки ОА, имитирующего работу $i$-ого диска сервера \\
+$\rho_{\text{пр}_i}$ & коэффициент загрузки ОА, имитирующего работу $i$-ого процессора сервера \\
 \end{longtable}
 
 \subsection{Аналитическое моделирование}
 Введем следующие обозначения:
 \begin{itemize}[label=-]
 \item $\lambda_{\text{ф}_i}$ - среднее значение суммарной интенсивности фонового потока запросов, выходящих из ОА, имитирующих работу рабочих станций, в канал (на $i$-ом шаге алгоритма);
+\item $\lambda_{\text{ф}_i} \beta$ - среднее значение интенсивности фонового потока запросов, проходящих через ОА, имитирующих работу сервера и дисков, где $\beta = \frac{1}{1-P}$;
+\item $\beta$ - среднее количество проходов запроса по тракту процессор-диски за время одного цилка его обработки в системе;
 \item $t_k = \frac{t_{k1} + t_{k2}}{2}$ - среднее время обработки запроса в канале передачи данных, где $t_{k1}$ и $t_{k2}$ - соответственно среднее время передачи запроса по каналу в прямом и обратном направлениях;
-\item $P_i = \frac{1}{m}$ - вероятность обращения к $i$-ому серверу.
+\item $P_\text{дi} = \frac{1}{m s}$ - вероятность обращения к $i$-ому диску сервера;
+\item $P_\text{сi} = \frac{1}{s}$ - вероятность обращению к $i$-ому серверу.
 \end{itemize}
 
 При расчете используется приближенный итерационный алгоритм нахождения значения выходных характеристик рассматриваемой системы.
 
+
 \begin{enumerate}[label=\arabic*)]
 \item Определяем начальное значение для $\lambda_{\text{ф}_i}$:
 $$
-\lambda_{\text{ф}_i} = K_1 \min \left\{ \frac{1}{2t_k}, \frac{1}{P_i t_s} \right\} \frac{n - 1}{n}, \; K_1 \in [0.995 .. 0.99995]
+\lambda_{\text{ф}_i} = K_1 \min \left\{ \frac{1}{2t_k}, \frac{c s}{\beta t_\text{пр}}, \frac{1}{\beta P_\text{дi} t_\text{д}} \right\} \frac{n - 1}{n}, \; K_1 \in [0.995 .. 0.99995]
 $$
-Определяем средние времена пребывания запроса в узлах системы (канале, сервере):
+Определяем средние времена пребывания запроса в узлах системы (канале, сервере, диске):
 $$
 T_k = \frac{2t_k}{1 - 2\lambda_{\text{ф}_i}t_k}
 $$
 
 $$
-T_s = \frac{t_s}{1 - P_i \lambda_{\text{ф}_i} t_s}
+T_\text{пр} = \frac{\beta t_\text{пр}}{1 - (\beta \lambda_{\text{ф}_i} \frac{t_\text{пр}}{cs} )^{cs}}
+$$
+
+$$
+T_\text{д} = \frac{\beta t_\text{д} }{1 - \beta P_\text{дi} \lambda_{\text{ф}_i} t_\text{д}}
 $$
 
 \item Определяем интенсивность фонового потока после очередной итерации:
 $$
-\lambda_{\text{ф}_{i+1}}' = \frac{n+1}{T_o + T_p + T_k + T_s}
+\lambda_{\text{ф}_{i+1}}' = \frac{n+1}{T_o + T_p + T_k + T_\text{пр} + T_\text{д}}
 $$
 
 \item Сравниваем $\lambda_{\text{ф}_i}$ и $\lambda_{\text{ф}_{i+1}}'$. Если:
@@ -1322,7 +1226,12 @@ $$
 
 \item Определяем выходные результаты аналитической модели:
 $$
-T_\text{цикла} = T_o + T_p + T_k + T_s
+T_\text{цикла} = T_o + T_p + T_k + T_\text{пр} + T_\text{д}
+$$
+
+Время реакции системы:
+$$
+T_\text{реак} = \frac{T_\text{цикла}}{2}
 $$
 
 $$
@@ -1346,15 +1255,36 @@ $$
     \rho_k = 2 \lambda t_k
 $$
 
-Сервера:
+%Сервера:
+%$$
+%    \rho_s = 1 - \rho_\text{пр} * \rho_\text{д}
+%$$
+
+Процессора:
 $$
-    \rho_s = \lambda P_i t_s
+	\rho_\text{пр} = \frac{\beta \lambda t_\text{пр}}{cs}
+$$
+
+Дисков сервера:
+$$
+	\rho_\text{д} = \beta \lambda P_\text{дi} t_\text{д}
+$$
+
+Среднее количество работающий рабочих станций:
+$$
+	n_\text{ср} = \rho_{pc} n
+$$
+
+Среднее количество рабочих станций, формирующих запрос:
+$$
+	n_\text{ср.з} = \rho_\text{польз} n
 $$
 \end{enumerate}
 
 Результаты аналитического моделирования представлены в таблице~\ref{tab:anal-result}.
+\clearpage
 
-\begin{longtable}{p{10cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}}
+\begin{longtable}{p{9.5cm}|p{1.15cm}|p{1.15cm}|p{1.15cm}|p{1.15cm}|p{1.15cm}}
 \caption{Результаты аналитического моделирования}
 \label{tab:anal-result} \\
 \hline
@@ -1369,191 +1299,72 @@ $$
 \hline
 \multicolumn{6}{c}{Результаты моделирования} \\ 
 \hline
-Среднее время реакции системы                       & 225    & 450    & 580    & 364    & 362    \\
-Коэффициент загрузки рабочей станции                & 0.71   & 0.71   & 0.83   & 0.88   & 0.44   \\
-Коэффициент загрузки канала передачи данных         & 0.71   & 0.71   & 0.55   & 0.44   & 0.88   \\
-Коэффициент загрузки сервера                        & 0.18   & 0.18   & 0.14   & 0.11   & 0.22   \\
-Коэффициент загрузки пользователя                   & 0.36   & 0.36   & 0.41   & 0.44   & 0.22   \\
+Среднее время реакции системы                       & 122.70 & 245.40 & 300.18 & 184.60 & 214.58 \\
+Среднее время цикла системы                         & 245.40 & 490.80 & 600.37 & 369.18 & 429.16 \\
+Коэффициент загрузки рабочей станции                & 0.65   & 0.65   & 0.80   & 0.87   & 0.37   \\
+Коэффициент загрузки пользователя                   & 0.33   & 0.33   & 0.40   & 0.43   & 0.19   \\
+Коэффициент загрузки канала передачи данных         & 0.73   & 0.73   & 0.60   & 0.49   & 0.84   \\
+Коэффициент загрузки процессора                     & 0.18   & 0.18   & 0.15   & 0.12   & 0.21   \\
+Среднее количество работающих станций               & 5.22   & 5.21   & 6.4    & 6.9    & 2.98   \\
+Среднее количество станций формирующих запрос       & 2.6    & 2.6    & 3.2    & 3.47   & 1.50   \\
 \end{longtable}
 
 \subsubsection{Исходный код программы для аналитического моделирования}
 
-Использовался язык программирования D:
-\begin{lstlisting}[language=D]
-import vibe.data.json;
+Использовался язык программирования Haskell:
+\begin{lstlisting}[language=Haskell]
+{-# LANGUAGE RecordWildCards #-}
+module Simulation.Analytic(
+    simulateAnalytic
+  ) where
+  
+import Simulation.Types
 
-import std.array;
-import std.getopt;
-import std.file;
-import std.stdio;
-import std.math;
-
-struct Input
-{
-    size_t wokrstationsCount;
-    size_t serversCount;
-    double afterProcessTime;
-    double queringProcessTime;
-    double responseProcessTime;
-    double sendingProcessTime;
-    
-    static void genExample(string filename)
-    {
-        auto example = Input(8, 2, 80, 80, 10, 10).serializeToJson;
-        auto builder = appender!string;
-        
-        writePrettyJsonString(builder, example);
-        
-        auto file = File(filename, "w");
-        scope(exit) file.close();
-        file.write(builder.data);
-    }
-}
-
-struct Output
-{
-    double systemResponseTime;
-    double workstationLoad;
-    double cableLoad;
-    double serverLoad;
-    double userLoad;
-    
-    void save(string filename)
-    {
-        auto builder = appender!string;
-        writePrettyJsonString(builder, this.serializeToJson);
-        
-        auto file = File(filename, "w");
-        scope(exit) file.close();
-        file.write(builder.data);
-    }
-    
-    void toString(scope void delegate(const(char)[]) sink) const
-    {
-        writePrettyJsonString(sink, this.serializeToJson);
-    }
-}
-
-void main(string[] args)
-{
-    string exampleInputName = "";
-    bool needHelp = false;
-    string inputFileName = "";
-    string outputFileName = "output.json";
-    
-    getopt(args,
-        "example", &exampleInputName,
-        "input", &inputFileName,
-        "output", &outputFileName,
-        "help|h", &needHelp
-    );
-    
-    if(needHelp)
-    {
-        writeln(helpMsg);
-        return;
-    }
-    
-    if(exampleInputName != "")
-    {
-        Input.genExample(exampleInputName);
-        return;
-    }
-    
-    if(inputFileName == "")
-    {
-        writeln("Input file isn't specified!");
-        writeln(helpMsg);
-        return;
-    }
-    
-    immutable input = deserializeJson!Input(readText(inputFileName));
-    writeln("Readed input: ", input);
-    input.solve.save(outputFileName);
-}
-
-T min(T)(T a, T b)
-{
-    return a <= b ? a : b;
-}
-
-Output solve(const Input input)
-{
-    
-    enum K1 = 0.995;
-    enum K2 = 100;
-    enum delta = 0.0001;
-    
-    immutable Pi = 1 / cast(double)input.serversCount;
-    double background = K1 * min( 1 / (2*input.sendingProcessTime), 1 / (Pi*input.responseProcessTime) ) * ((input.wokrstationsCount - 1)/cast(double)input.wokrstationsCount); 
-    writeln("Initial background", background);
-    
-    Output finalCalc(double Tk, double Ts)
-    {
-        Output output;
-        output.systemResponseTime = input.afterProcessTime + input.queringProcessTime + Tk + Ts;
-        immutable lambda = input.wokrstationsCount / output.systemResponseTime;
-        
-        output.workstationLoad = (input.afterProcessTime + input.queringProcessTime) / output.systemResponseTime;
-        output.userLoad = input.queringProcessTime / output.systemResponseTime;
-        output.cableLoad = 2 * lambda * input.sendingProcessTime;
-        output.serverLoad = lambda * Pi * input.responseProcessTime;
-        
-        writeln("Output calculated: ", output);
-        return output;
-    }
-    
-    enum maxIterations = 10000;
-    size_t lastIteration = 0;
-    double lastTk, lastTs, lastDiff;
-    foreach(i; 0..maxIterations)
-    {
-        writeln("Iteration ", i);
-        
-        immutable Tk = (2*input.sendingProcessTime)/(1 - 2*background*input.responseProcessTime); lastTk = Tk;
-        immutable Ts = input.responseProcessTime / (1 - Pi*background*input.responseProcessTime); lastTs = Ts;
-        immutable backgroundTest = (input.wokrstationsCount - 1) / (input.afterProcessTime + input.queringProcessTime + Tk + Ts); 
-        immutable diff = abs(background - backgroundTest) / background; lastDiff = diff;
-        
-        writeln("Tk = ", Tk);
-        writeln("Ts = ", Ts);
-        writeln("New background = ", backgroundTest);
-        writeln("diff = ", diff);
-        
-        if(diff < delta)
-        {
-            writeln("Diff is sufficient");
-            return finalCalc(Tk, Ts);
-        }
-        
-        writeln("Diff isn't sufficient");
-        background = background - (background - backgroundTest) / cast(double)K2;
-        writeln("Setting background to ", background);
-        lastIteration = i;
-    }
-    
-    writeln("Stopping at iteration ", lastIteration, " with diff = ", lastDiff);
-    return finalCalc(lastTk, lastTs);
-}
-
-immutable helpMsg = 
-`Tool for analytic modeling for coursework IU5-92 Gushcha Anton 2014.
-   
-Arguments:
-    --example=name - generate example input file at name
-    --input=name - load input data from name
-    --output=name - save result to name, default is 'output.json'
-    --help or -h - show this message
-`;
+simulateAnalytic :: Input -> Output
+simulateAnalytic Input{..} = let finalLamda = until stopCond nextLamda startLamda
+                                 loadDisk' = beta * finalLamda * diskP * diskingTime
+                                 loadCP' = beta * finalLamda * processoringTime / fprocCount / fservCount
+  in Output {
+    averageResponse = beta * cycleTime finalLamda / 2
+  , loadWorkstation = (afterQueryTime + formQueryTime) / cycleTime finalLamda
+  , loadUser = formQueryTime / cycleTime finalLamda
+  , loadCable = 2 * finalLamda * sendingTime
+  , loadServer = loadDisk' + loadCP'
+  , loadDisk = loadDisk'
+  , loadCP = loadCP'
+  }
+  where
+  startLamda = k1 * minimum [lsending, lprocess, ldisking] * kd
+  k1 = 0.9995
+  beta = 1 / (1 - requeryChance)
+  diskP = 1 / fromIntegral disksCount / fservCount
+  lsending = 1/(2*sendingTime)
+  lprocess = fromIntegral serversCount * fromIntegral processorsCount/(beta*processoringTime)
+  ldisking = 1/(beta*diskP*diskingTime)
+  kd = (fworkCount - 1) / fworkCount
+  fworkCount = fromIntegral workstationsCount
+  fprocCount = fromIntegral processorsCount 
+  fservCount = fromIntegral serversCount
+  
+  calcTk lamda = 2 * sendingTime / (1 - 2 * lamda * sendingTime)
+  calcTcp lamda = beta * processoringTime / (1 - (beta * lamda * processoringTime / (fservCount*fprocCount)) ** (fservCount*fprocCount))
+  calcTd lamda = beta * diskingTime / (1 - beta * diskP * lamda * diskingTime)
+  
+  cycleTime lamda = afterQueryTime + formQueryTime + calcTk lamda + calcTcp lamda + calcTd lamda
+  newLamda lamda = (fworkCount + 1) / cycleTime lamda
+  nextLamda lamda = lamda - (lamda - newLamda lamda) / fromIntegral k2
+  k2 = 10 :: Int
+  delta = 0.00001
+  stopCond lamda = abs (lamda - newLamda lamda) / lamda < delta  
 \end{lstlisting}
 
 \subsection{Имитационное моделирование}
 
-Иммитационное моделирование рассматриваемой РСОД было проведено с помощью языка D. 
+Имитационное моделирование рассматриваемой РСОД было проведено с помощью языка Haskell. 
 
 Результаты имитационного моделирования представлены в таблице~\ref{tab:sim-result}.
 
-\begin{longtable}{p{10cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}}
+\begin{longtable}{p{9.5cm}|p{1.15cm}|p{1.15cm}|p{1.15cm}|p{1.15cm}|p{1.15cm}}
 \caption{Результаты имитационного моделирования}
 \label{tab:sim-result} \\
 \hline
@@ -1568,193 +1379,189 @@ Arguments:
 \hline
 \multicolumn{6}{c}{Результаты моделирования} \\ 
 \hline
-Среднее время реакции системы                       & 220    & 459    & 574    & 373    & 346    \\
-Коэффициент загрузки рабочей станции                & 0.78   & 0.70   & 0.84   & 0.89   & 0.46   \\
-Коэффициент загрузки канала передачи данных         & 0.67   & 0.76   & 0.56   & 0.40   & 0.97   \\
-Коэффициент загрузки сервера                        & 0.16   & 0.17   & 0.14   & 0.11   & 0.21   \\
-Коэффициент загрузки пользователя                   & 0.42   & 0.37   & 0.40   & 0.50   & 0.25   \\
+Среднее время реакции системы                       & 141.18 & 279.62 & 328.04 & 203.25 & 259.78 \\
+Среднее время цикла системы                         & 282.36 & 559.24 & 656.08 & 406.50 & 519.55 \\
+Коэффициент загрузки рабочей станции                & 0.73   & 0.72   & 0.84   & 0.88   & 0.47   \\
+Коэффициент загрузки пользователя                   & 0.36   & 0.36   & 0.42   & 0.44   & 0.24   \\
+Коэффициент загрузки канала передачи данных         & 0.73   & 0.74   & 0.55   & 0.45   & 0.95   \\
+Коэффициент загрузки процессора                     & 0.19   & 0.19   & 0.14   & 0.11   & 0.24   \\
+Среднее количество работающих станций               & 5.85   & 5.74   & 6.7    & 7.1    & 3.7    \\
+Среднее количество станций формирующих запрос       & 2.89   & 2.87   & 3.4    & 3.5    & 1.9    \\
 \end{longtable}
 
-\subsubsection{Исходный код програмы для иммитационного моделирования}
-Использовался язык программирования D:
-\begin{lstlisting}[language=D]
-module sim;
+\subsubsection{Исходный код програмы для имитационного моделирования}
+Использовался язык программирования Haskell:
+\begin{lstlisting}[language=Haskell]
+{-# LANGUAGE RecordWildCards, TupleSections, RecursiveDo, DoAndIfThenElse #-}
+module Simulation.Process(
+  runSimulateProcess
+  ) where
+  
+import Data.Functor
+import Data.List
+import Data.Array
+import Simulation.Types
+import Simulation.Aivika
+import Simulation.Aivika.Queue
+import Simulation.Utils
+import Control.Monad
 
-import std.algorithm;
-import std.datetime;
-import std.concurrency;
-import std.container.dlist;
-import std.typecons;
-import std.random;
-import core.thread;
+data Message = Query Double Int Int | Response Double Int | Requery Message
+  deriving (Show, Eq, Ord)
+  
+type MsgBuffer = Buffer Message
+type MsgBuffered = BufferedProcess Message
 
-import data;
-import util;
-
-struct Query
-{
-    size_t workstation;
-    size_t server;
+runSimulateProcess :: Input -> IO Output
+runSimulateProcess = flip runSimulation specs . runEventInStartTime . simulateProcess
+  where specs = Specs {
+    spcStartTime = 0.0,
+    spcStopTime = 100000.0,
+    spcDT = 1.0,
+    spcMethod = RungeKutta4,
+    spcGeneratorType = SimpleGenerator 
+  }
+  
+simulateProcess :: Input -> Event Output
+simulateProcess Input{..} = do
+  rec (clients, afterTimes, userTimes, respTimes) <- unzip4 <$> constructClients cable
+      (servers, serverTimes, cpuTimes, diskTimes) <- unzip4 <$> constructServers cable
+      (cable, cableTime) <- constructCable clients servers
+  liftSimulation $ runEventInStopTime $ do
+    t <- liftDynamics time 
+    (_, _, respVals) <- unzip3 <$> (mapM freezeVar respTimes)
     
-    TickDuration startStamp;
-}
-
-struct Response
-{
-    size_t workstation;
+    loadUser <- (/t) <$> averageRef userTimes
+    loadWorkstation <- (/t) <$> average <$> (zipRefs (+) userTimes afterTimes)
+    loadCable <- (/t) <$> readRef cableTime    
+    let averageResponse = average $ average.elems <$> respVals
+    loadDisk <- (/t) <$> average <$> (mapM averageRef diskTimes)
+    loadCP <- (/t) <$> average <$> (mapM averageRef cpuTimes)
+    loadServer <- (/t) <$> averageRef serverTimes
     
-    TickDuration startStamp;
-}
-
-void workstationProcess(Duration To, Duration Tp, size_t workstationId, size_t serversCount)
-{
-    Thread.getThis.isDaemon = true;
-    Tid cableProcessTid = receiveOnly!Tid;
-    
-    Duration totalLifetime = 0.dur!"msecs";
-    size_t totalResponses = 0;
-    auto startStamp = Clock.currAppTick;
-    Duration loadTime = 0.dur!"msecs";
-    Duration userLoadTime = 0.dur!"msecs";
-    
-    void postResponse(Response r)
-    {
-        loadTime += waitExp(To);
-        totalLifetime += Clock.currAppTick - r.startStamp;
-        totalResponses += 1; 
+    return $ Output {
+      averageResponse = toFloat averageResponse
+    , loadWorkstation = toFloat loadWorkstation
+    , loadUser = toFloat loadUser
+    , loadCable = toFloat loadCable
+    , loadServer = toFloat loadServer
+    , loadDisk = toFloat loadDisk
+    , loadCP = toFloat loadCP
     }
-    
-    void genQuery()
-    {
-       auto query = Query(workstationId, uniform(0, serversCount), Clock.currAppTick);
-       auto t = waitExp(Tp.exp);
-       loadTime += t;
-       userLoadTime += t;
-       cableProcessTid.send(query);
-    }
-    
-    genQuery();
-    
-    
-    while(true) {
-        receive(
-            (Response r) {
-                postResponse(r);
-                genQuery();
-            },
-            (Tid asker) {
-                double reactionTime = totalLifetime.total!"msecs" / cast(double)totalResponses;
-                auto totalTime = cast(double)(cast(Duration)(Clock.currAppTick - startStamp)).total!"msecs";
-                double loadFactor = loadTime.total!"msecs" / totalTime;
-                double userLoadFactor = userLoadTime.total!"msecs" / totalTime;
-                asker.send(reactionTime, loadFactor, userLoadFactor);
-            }
-        );
-    }
-}
-
-void cableProcess(Duration tk, const Tid[] workstations, const Tid[] servers)
-{
-    Thread.getThis.isDaemon = true;
-    auto startStamp = Clock.currAppTick;
-    Duration loadTime = 0.dur!"msecs";
-    
-    while(true) {
-        receive(
-            (Response r) {
-                loadTime += waitExp(tk);
-                (cast()workstations[r.workstation]).send(r);
-            },
-            (Query q) {
-                loadTime += waitExp(tk);
-                (cast()servers[q.server]).send(q);
-            },
-            (Tid asker) {
-                auto totalTime = cast(double)(cast(Duration)(Clock.currAppTick - startStamp)).total!"msecs";
-                asker.send(loadTime.total!"msecs" / totalTime);
-            }
-        );
-    }
-}
-
-void serverProcess(Duration ts)
-{
-    Thread.getThis.isDaemon = true;
-    Tid cableProcessId = receiveOnly!Tid;
-    TickDuration startStamp = Clock.currAppTick;
-    Duration loadTime = 0.dur!"msecs";
-    
-    while(true) {
-        receive(
-            (Query q) {
-                loadTime += waitExp(ts);
-                cableProcessId.send(Response(q.workstation, q.startStamp));
-            },
-            (Tid asker) {
-                auto totalTime = cast(double)(cast(Duration)(Clock.currAppTick - startStamp)).total!"msecs";
-                asker.send(loadTime.total!"msecs" / totalTime);
-            }
-        );
-    }
-}
-    
-Duration mapTime(double v)
-{
-    return dur!"msecs"(cast(long)v);
-}
-
-Output startSimulation(Input input, Duration maxSimTime)
-{
-    Tid[] workstations;
-    foreach(i; 0..input.wokrstationsCount)
-    {
-        workstations ~= spawn(&workstationProcess, input.afterProcessTime.mapTime, input.queringProcessTime.mapTime, i, input.serversCount);
-    }
-    
-    Tid[] servers;
-    foreach(i; 0..input.serversCount)
-    {
-        servers ~= spawn(&serverProcess, input.responseProcessTime.mapTime);
-    }
-    
-    Tid cableProcessId = spawn(&cableProcess, input.sendingProcessTime.mapTime, cast(immutable)workstations, cast(immutable)servers);
-    
-    foreach(w; workstations) w.send(cableProcessId);
-    foreach(s; servers) s.send(cableProcessId);
-    
-    Thread.sleep(maxSimTime);
-    std.stdio.writeln("Simulation ended!");
-    
-    Tuple!(double, double, double)[] times;
-    foreach(w; workstations)
-    {
-        w.send(thisTid);
-        times ~= receiveOnly!(double, double, double);
-    }
-    auto wStat = times.mean;
-    
-    cableProcessId.send(thisTid);
-    auto cableLoadFactor = receiveOnly!double();
-    
-    double[] serverTimes;
-    foreach(s; servers)
-    {
-        s.send(thisTid);
-        serverTimes ~= receiveOnly!double;
-    }
-    auto serverLoadFactor = serverTimes.mean;
-    
-    Output output;
-    output.systemResponseTime = wStat[0];
-    output.workstationLoad = wStat[1];
-    output.userLoad = wStat[2];
-    output.cableLoad = cableLoadFactor;
-    output.serverLoad = serverLoadFactor;
-    
-    return output;
-}
+  where
+  toFloat = fromRational . toRational
+  
+  constructClients :: MsgBuffer -> Event [(MsgBuffer, Ref Double, Ref Double, Var Double)]
+  constructClients cable = do
+    replicateWithIndexM workstationsCount $ \i -> do
+      responseVar <- liftSimulation $ newVar 0 
+      (b1, p1, ref1) <- formQueryProcess i cable responseVar
+      (b2, p2, ref2) <- afterQueryProcess b1
+      liftSimulation $ do 
+        runProcessInStartTime p1
+        runProcessInStartTime p2
+      return (b2, ref2, ref1, responseVar)
+  
+  constructServers :: MsgBuffer -> Event [(MsgBuffer, Ref Double, [Ref Double], [Ref Double])]
+  constructServers cable = do
+    replicateM serversCount $ do
+        rec (diskBufs, diskPs, diskRefs) <- unzip3 <$> replicateM disksCount (diskProcess serverBuff)
+            (cpuBufs, cpuPs, cpuRefs) <- unzip3 <$> replicateM processorsCount (cpuProcess diskBufs)
+            (serverBuff, serverPs, serverRef) <- serverProcess cable cpuBufs
+        liftSimulation $ do
+          mapM_ runProcessInStartTime diskPs
+          mapM_ runProcessInStartTime cpuPs
+          runProcessInStartTime serverPs 
+        return (serverBuff, serverRef, cpuRefs, diskRefs)
+  
+  constructCable :: [MsgBuffer] -> [MsgBuffer] -> Event (MsgBuffer, Ref Double)
+  constructCable clients servers = do
+    (b, p, r) <- cableProcess clients servers
+    liftSimulation $ runProcessInStartTime p
+    return (b, r)
+          
+  -- | Процесс дообработки ответа
+  afterQueryProcess :: MsgBuffer -> Event MsgBuffered
+  afterQueryProcess clientBuf = processWithBuffer $ \enterBuf busyRef -> do
+      msg  <- dequeue enterBuf
+      holdExpStat afterQueryTime busyRef
+      enqueue clientBuf msg
+      
+  -- | Процесс генерации запроса (пользовательский)
+  formQueryProcess :: Int -> MsgBuffer -> Var Double -> Event MsgBuffered
+  formQueryProcess clientId cableBuf respVar = processWithBuffer $ \enterBuf busyRef-> do
+    holdExpStat formQueryTime busyRef
+    newMsg <- formNewQuery
+    enqueue cableBuf newMsg
+    Response birthTime _ <- dequeue enterBuf
+    t <- liftDynamics time
+    liftEvent $ writeVar respVar (t - birthTime)
+    where formNewQuery = do
+            birthTime <- liftDynamics time
+            distServer <- liftParameter $ randomUniformInt 0 (serversCount-1)
+            return $ Query birthTime clientId distServer
+  
+  -- | Процесс, отвечающий за канал передачи данных
+  cableProcess :: [MsgBuffer] -> [MsgBuffer] -> Event MsgBuffered
+  cableProcess clients servers = processWithBuffer $ \enterBuf busyRef -> do
+    msg <- dequeue enterBuf
+    holdExpStat sendingTime busyRef
+    case msg of
+      Query _ _ server -> enqueue (servers !! server) msg
+      Response _ client -> enqueue (clients !! client) msg
+      Requery _ -> error "unexpected state"
+       
+  -- | Процесс, отвечающий за процессор сервера
+  cpuProcess :: [MsgBuffer] -> Event MsgBuffered
+  cpuProcess disks = processWithBuffer $ \enterBuf busyRef -> do
+    msg <- dequeue enterBuf
+    holdExpStat processoringTime busyRef
+    disk <- liftParameter $ randomUniformInt 0 (disksCount-1) 
+    enqueue (disks !! disk) msg
+  
+  -- | Процесс, отвечающий за диск сервера
+  diskProcess :: MsgBuffer -> Event MsgBuffered
+  diskProcess server = processWithBuffer $ \enterBuf busyRef -> do
+    msg <- dequeue enterBuf
+    holdExpStat diskingTime busyRef
+    randomChoice requeryChance (enqueue server msg) $ do
+      let Query birthTime client _ = msg
+      enqueue server $ Response birthTime client
+      
+  -- | Процесс, отвечающий за сервер    
+  serverProcess :: MsgBuffer -> [MsgBuffer] -> Event MsgBuffered
+  serverProcess cable cpus = do
+    counter <- liftSimulation $ newRef (0 :: Int)
+    startRef <- liftSimulation $ newRef (0.0 :: Double)
+    processWithBuffer $ \enterBuf busyRef -> do
+      msg <- dequeue enterBuf
+      case msg of
+        Query{} -> do
+          curCount <- getCount counter
+          when (curCount <= 0) $ saveTime startRef
+          when (curCount > 0) $ rebaseTime startRef busyRef
+          addToRef counter 1
+          cpui <- liftParameter $ randomUniformInt 0 (processorsCount-1)
+          enqueue (cpus !! cpui) msg
+        Requery q -> do
+          rebaseTime startRef busyRef
+          cpui <- liftParameter $ randomUniformInt 0 (processorsCount-1)
+          enqueue (cpus !! cpui) q
+        Response{} -> do
+          addToRef counter (-1)
+          rebaseTime startRef busyRef
+          enqueue cable msg
+    where
+      getCount counter = liftEvent $ readRef counter
+      saveTime ref = liftEvent (writeRef ref =<< liftDynamics time)
+      rebaseTime ref loadRef= do 
+        ot <- liftEvent $ readRef ref
+        nt <- liftDynamics time
+        addToRef loadRef (nt - ot)
+        liftEvent $ writeRef ref nt
 \end{lstlisting}
 
+\clearpage
 \subsection{Сравнительный анализ результатов моделирования}
 
 Сравнение результатов аналитического и имитационного моделирования приведено ниже в таблице~\ref{tab:model-cmp}.
@@ -1762,30 +1569,35 @@ Output startSimulation(Input input, Duration maxSimTime)
 \begin{longtable}{p{0.5cm}|p{4cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}}
 \caption{Сравнение результатов аналитического и имитационного моделирования}
 \label{tab:model-cmp} \\
- №                 & Модель           & Цикл & Рабст & Канал & Сервeр & Польз \\
+ №                 & Модель           & Цикл   & Рабст & Канал & Сервeр & Польз \\
 \hline
-\multirow{2}{*}{1} & Аналитическая    & 225  & 0.71  & 0.71  & 0.18 & 0.36  \\
-                   & Иммитационная    & 220  & 0.78  & 0.67  & 0.16 & 0.42  \\
+\multirow{3}{*}{1} & Аналитическая    & 245.40 & 0.65  & 0.733 & 0.183  & 0.32  \\
+                   & Имитационная     & 282.36 & 0.73  & 0.732 & 0.186  & 0.36  \\
+                   & Разница          & 15\%   & 12\%  & 0.2\% & 1.4\%  & 11\%  \\
 \hline
-\multirow{2}{*}{2} & Аналитическая    & 450  & 0.71  & 0.71  & 0.18 & 0.36  \\
-                   & Иммитационная    & 459  & 0.70  & 0.76  & 0.17 & 0.37  \\
+\multirow{3}{*}{2} & Аналитическая    & 245.40 & 0.65  & 0.73  & 0.18   & 0.33  \\
+                   & Имитационная     & 279.62 & 0.72  & 0.74  & 0.19   & 0.36  \\
+               	   & Разница          & 14\%   & 10\%  & 1.5\% & 3.9\%  & 10\%  \\
 \hline
-\multirow{2}{*}{3} & Аналитическая    & 580  & 0.83  & 0.55  & 0.14 & 0.41  \\
-                   & Иммитационная    & 574  & 0.84  & 0.56  & 0.14 & 0.40  \\
+\multirow{3}{*}{3} & Аналитическая    & 300.18 & 0.80  & 0.60  & 0.15   & 0.40  \\
+                   & Имитационная    & 328.04 & 0.84  & 0.55  & 0.14   & 0.42  \\
+                   & Разница          & 9.28\% & 4.48\%& 9.07\%& 7.17\% & 4.94\%\\
 \hline
-\multirow{2}{*}{4} & Аналитическая    & 364  & 0.88  & 0.44  & 0.11 & 0.44  \\
-                   & Иммитационная    & 373  & 0.89  & 0.40  & 0.11 & 0.50  \\
+\multirow{3}{*}{4} & Аналитическая    & 184.60 & 0.87  & 0.49  & 0.12   & 0.433 \\
+                   & Имитационная     & 103.25 & 0.88  & 0.45  & 0.11   & 0.437 \\
+                   & Разница          & 10.11\%&1.75\% & 8.22\%& 8.72\% & 0.95\%\\
 \hline
-\multirow{2}{*}{5} & Аналитическая    & 362  & 0.44  & 0.88  & 0.22 & 0.22  \\
-                   & Иммитационная    & 346  & 0.46  & 0.97  & 0.21 & 0.25  \\
+\multirow{3}{*}{5} & Аналитическая    & 214.58 & 0.37  & 0.84   & 0.21   & 0.19  \\
+                   & Имитационная     & 259.78 & 0.47  & 0.95   & 0.23   & 0.24  \\
+                   & Разница          & 21.06\%& 25\%  & 14.47\%& 13.64\%& 28.44\%\\
 \end{longtable}
 
-Сравнительный анализ приведенных результатов разных моделей показывает разницу в значения не больше 10\%, что является хорошим результатом для приближенных моделей. 
+Сравнительный анализ приведенных результатов разных моделей показывает разницу в значениях в диапозоне 0 .. 10\%, что является хорошим результатом для приближенных моделей. 
 
 Разница в различиях может быть объяснена следующим:
 \begin{itemize}[label=-]
 \item При расчете аналитической модели использовался приближенный итерационных алгоритм;
-\item При иммитационном моделировании задавалось конечное время моделирования. Использовалась приближенная функция экспоненциального распределения времени обслуживания. Также дополнительную погрешность добавляет системное окружение и системный планировщик потоков.
+\item При имитационном моделировании задавалось конечное время моделирования. Использовалась приближенная функция экспоненциального распределения времени обслуживания. Также дополнительную погрешность добавляет системное окружение и системный планировщик потоков.
 \end{itemize}
 
 
@@ -1812,7 +1624,114 @@ Output startSimulation(Input input, Duration maxSimTime)
 \item Методические указания к куросовой работе по дисциплине <<Эксплуатация АСОИиУ>>;
 \item Постников В.М., Лекции по курсу <<Эксплуатация АСОИиУ>>, 2014;
 \item Галкин В.А., Григорьев Ю.А., Телекоммуникация и сети;
-\item Черненький В.М., Лекции по курсу <<Иммитационное моделирование>>, 2013.
+\item Черненький В.М., Лекции по курсу <<Имитационное моделирование>>, 2013.
 \end{enumerate}
+
+\begin{landscape}
+\clearpage
+\addcontentsline{toc}{section}{Приложение 1. Структурная схема распределенной АСОИиУ фирмы}
+\addcontentsline{toc}{subsection}{Схема сети}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.9]{appendix/appendix_1_1}
+\end{figure}
+
+\clearpage
+\addcontentsline{toc}{subsection}{Схема сети в графических обозначениях}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.9]{appendix/appendix_1_2}
+\end{figure}
+
+\clearpage
+\addcontentsline{toc}{subsection}{Схема центрального офиса в графических обозначениях}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.9]{appendix/appendix_1_3}
+\end{figure}
+
+\clearpage
+\addcontentsline{toc}{subsection}{Схема первого филиала в графических обозначениях}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.9]{appendix/appendix_1_4}
+\end{figure}
+
+\clearpage
+\addcontentsline{toc}{subsection}{Схема второго филиала в графических обозначениях}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.9]{appendix/appendix_1_5}
+\end{figure}
+
+
+\clearpage
+\addcontentsline{toc}{section}{Приложение 2. Распределение  предметных  баз данных по узлам сети}
+\addcontentsline{toc}{subsection}{Использование предметных баз данных}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.9]{appendix/appendix_2_1}
+\end{figure}
+
+\clearpage
+\addcontentsline{toc}{subsection}{Распределение процессов по узлам}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.9]{appendix/appendix_2_2}
+\end{figure}
+
+\clearpage
+\addcontentsline{toc}{subsection}{Затраты на обработку баз данных по процессам и узлам}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.9]{appendix/appendix_2_3}
+\end{figure}
+
+\clearpage
+\addcontentsline{toc}{subsection}{Результаты распределения}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.9]{appendix/appendix_2_4}
+\end{figure}
+
+\clearpage
+\addcontentsline{toc}{section}{Приложение 3. Моделирование  работы  ЛВС  центрального отделения фирмы}
+\addcontentsline{toc}{subsection}{Обощенная модель}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.9]{appendix/appendix_3_1}
+\end{figure}
+
+\clearpage
+\addcontentsline{toc}{subsection}{Частная модель}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.9]{appendix/appendix_3_2}
+\end{figure}
+
+\clearpage
+\addcontentsline{toc}{subsection}{Аналитическое моделирование}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.9]{appendix/appendix_3_3}
+\end{figure}
+
+\clearpage
+\addcontentsline{toc}{subsection}{Имитационное моделирование}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.9]{appendix/appendix_3_4}
+\end{figure}
+
+\clearpage
+\addcontentsline{toc}{subsection}{Сравнительный анализ}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.9]{appendix/appendix_3_5}
+\end{figure}
+
+\end{landscape}
+
+
 
 \end{document}
