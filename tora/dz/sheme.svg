@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="sheme.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.959798"
+     inkscape:cx="254.80808"
+     inkscape:cy="845.5831"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:object-paths="true"
+     inkscape:snap-intersection-paths="false"
+     inkscape:object-nodes="false"
+     inkscape:snap-smooth-nodes="true"
+     inkscape:snap-midpoints="false"
+     inkscape:snap-object-midpoints="true"
+     inkscape:snap-center="true"
+     inkscape:window-width="1366"
+     inkscape:window-height="715"
+     inkscape:window-x="0"
+     inkscape:window-y="31"
+     inkscape:window-maximized="1"
+     inkscape:snap-nodes="true" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.90851319;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect2985"
+       width="143.78499"
+       height="76.114204"
+       x="272.85715"
+       y="33.790756" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.17420614px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 272.85714,55.933611 143.785,-0.714286"
+       id="path2987"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="277.14285"
+       y="48.790752"
+       id="text2989"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2991"
+         x="277.14285"
+         y="48.790752"
+         style="font-size:14px">N_пост = n_post</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="276.89432"
+       y="71.528618"
+       id="text2989-9"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2991-9"
+         x="276.89432"
+         y="71.528618"
+         style="font-size:14px">Имя = name</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="276.89432"
+       y="87.242897"
+       id="text2989-1"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2991-5"
+         x="276.89432"
+         y="87.242897"
+         style="font-size:14px">Состояние = state</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="276.18002"
+       y="102.2429"
+       id="text2989-6"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2991-6"
+         x="276.18002"
+         y="102.2429"
+         style="font-size:14px">Город = city</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="335"
+       y="28.076468"
+       id="text3071"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3073"
+         x="335"
+         y="28.076468">S</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.90851319;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect2985-8"
+       width="143.78499"
+       height="76.114204"
+       x="50.964642"
+       y="160.78555" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.17420614px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 51.678931,217.2141 195.46393,216.49982"
+       id="path2987-9"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="55.250347"
+       y="175.78555"
+       id="text2989-4"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2991-55"
+         x="55.250347"
+         y="175.78555"
+         style="font-size:14px">N_пост = n_post</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="55.001812"
+       y="192.09485"
+       id="text2989-9-7"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2991-9-6"
+         x="55.001812"
+         y="192.09485"
+         style="font-size:14px">N_дет = n_det</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="54.287518"
+       y="209.2377"
+       id="text2989-1-0"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2991-5-4"
+         x="54.287518"
+         y="209.2377"
+         style="font-size:14px">N_изд = n_izd</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="53.573284"
+       y="231.38057"
+       id="text2989-6-7"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2991-6-8"
+         x="53.573284"
+         y="231.38057"
+         style="font-size:14px">Колво = count</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="108.1075"
+       y="151.49983"
+       id="text3071-6"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3073-2"
+         x="108.1075"
+         y="151.49983">SPJ</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:1.03069031;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect2985-8-5"
+       width="143.78499"
+       height="97.96244"
+       x="274.82678"
+       y="144.71413" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.17420614px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 275.54108,165.42838 419.32607,164.7141"
+       id="path2987-9-1"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="278.14966"
+       y="177.45198"
+       id="text2989-9-7-5"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2991-9-6-5"
+         x="278.14966"
+         y="177.45198"
+         style="font-size:14px">Название = name</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="278.14966"
+       y="193.16626"
+       id="text2989-1-0-5"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2991-5-4-3"
+         x="278.14966"
+         y="193.16626"
+         style="font-size:14px">Цвет = color</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="277.43542"
+       y="208.88057"
+       id="text2989-6-7-8"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2991-6-8-4"
+         x="277.43542"
+         y="208.88057"
+         style="font-size:14px">Вес = weight</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="331.96964"
+       y="135.42841"
+       id="text3071-6-3"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3073-2-5"
+         x="331.96964"
+         y="135.42841">P</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="279.16443"
+       y="159.60109"
+       id="text2989-9-7-5-5"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2991-9-6-5-4"
+         x="279.16443"
+         y="159.60109"
+         style="font-size:14px">N_дет = n_det</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="277.59628"
+       y="224.79591"
+       id="text2989-6-7-8-6"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2991-6-8-4-0"
+         x="277.59628"
+         y="224.79591"
+         style="font-size:14px">Город = city</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.81650627;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect2985-1"
+       width="143.78499"
+       height="61.478359"
+       x="269.53607"
+       y="278.6427" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.17420614px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 269.53608,300.78554 143.78499,-0.71429"
+       id="path2987-2"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="273.82178"
+       y="293.6427"
+       id="text2989-12"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2991-96"
+         x="273.82178"
+         y="293.6427"
+         style="font-size:14px">N_изд = n_izd</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="273.57324"
+       y="316.38055"
+       id="text2989-9-78"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2991-9-4"
+         x="273.57324"
+         y="316.38055"
+         style="font-size:14px">Название = name</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="272.85895"
+       y="332.09485"
+       id="text2989-6-4"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2991-6-81"
+         x="272.85895"
+         y="332.09485"
+         style="font-size:14px">Город = city</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="335.96463"
+       y="270.78555"
+       id="text3071-64"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3073-3"
+         x="335.96463"
+         y="270.78555">J</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 194.74963,171.6479 42.39323,0 0,-97.857147 35.71429,0"
+       id="path3270"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 194.74963,190.21932 80.07715,0"
+       id="path3272"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 194.74963,208.79075 53.8218,0 0,103.57143 20.96464,0"
+       id="path3274"
+       inkscape:connector-curvature="0" />
+    <path
+       sodipodi:type="arc"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path3276"
+       sodipodi:cx="166.78572"
+       sodipodi:cy="115.57647"
+       sodipodi:rx="1.7857143"
+       sodipodi:ry="1.7857143"
+       d="m 168.57144,115.57647 a 1.7857143,1.7857143 0 1 1 -3.57143,0 1.7857143,1.7857143 0 1 1 3.57143,0 z"
+       transform="translate(27.963909,55.810928)" />
+    <path
+       sodipodi:type="arc"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path3276-0"
+       sodipodi:cx="166.78572"
+       sodipodi:cy="115.57647"
+       sodipodi:rx="1.7857143"
+       sodipodi:ry="1.7857143"
+       d="m 168.57144,115.57647 a 1.7857143,1.7857143 0 1 1 -3.57143,0 1.7857143,1.7857143 0 1 1 3.57143,0 z"
+       transform="translate(27.963909,74.367976)" />
+    <path
+       sodipodi:type="arc"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path3276-0-2"
+       sodipodi:cx="166.78572"
+       sodipodi:cy="115.57647"
+       sodipodi:rx="1.7857143"
+       sodipodi:ry="1.7857143"
+       d="m 168.57144,115.57647 a 1.7857143,1.7857143 0 1 1 -3.57143,0 1.7857143,1.7857143 0 1 1 3.57143,0 z"
+       transform="translate(27.963909,93.055799)" />
+  </g>
+</svg>
